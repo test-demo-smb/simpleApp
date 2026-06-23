@@ -1,13 +1,13 @@
-from flask import Flask, request
+from flask import Flask
+import socket
 
 app = Flask(__name__)
 
 @app.route('/')
-def get_ip():
-    return f"""
-    <h1>Hello from Python Flask!</h1>
-    <h2>Your IP Address: {request.remote_addr}</h2>
-    """
+def print_ip():
+    hostname = socket.gethostname()
+    local_ip = socket.gethostbyname(hostname)
+    return local_ip
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=80)
